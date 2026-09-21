@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ARCUS color system */
+    --charcoal: 0 0% 10%;
+    --charcoal-light: 0 0% 16%;
+    --ivory: 40 30% 95%;
+    --ivory-dark: 40 20% 88%;
+    --soft-gray: 40 10% 82%;
+    --graphite: 0 0% 16%;
+    --graphite-light: 0 0% 22%;
+    --black: 0 0% 4%;
+    --accent: 217 91% 60%;
+    --accent-light: 217 91% 72%;
+    --accent-dark: 217 91% 48%;
+
+    /* shadcn semantic tokens — mapped to ARCUS palette */
+    --background: var(--charcoal);
+    --foreground: var(--ivory);
+    --card: var(--graphite);
+    --card-foreground: var(--ivory);
+    --popover: var(--graphite);
+    --popover-foreground: var(--ivory);
+    --primary: var(--accent);
+    --primary-foreground: 0 0% 100%;
+    --secondary: var(--graphite-light);
+    --secondary-foreground: var(--ivory);
+    --muted: var(--graphite-light);
+    --muted-foreground: 40 10% 65%;
+    --accent-sem: var(--accent);
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: var(--accent);
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'ss01', 'cv01';
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display), Georgia, serif;
+  }
+  .font-mono-tech {
+    font-family: var(--font-mono), 'Courier New', monospace;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .clip-reveal {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--black));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--graphite-light));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent));
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--accent));
+  color: white;
+}
