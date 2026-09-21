@@ -16,9 +16,14 @@ export function Preloader() {
       return;
     }
 
-    const timer = setTimeout(() => setDone(true), 4200);
+    const timer = setTimeout(() => setDone(true), 2600);
     return () => clearTimeout(timer);
   }, []);
+
+  const skip = () => {
+    setDone(true);
+    setSkipped(true);
+  };
 
   if (skipped) return null;
 
@@ -28,13 +33,13 @@ export function Preloader() {
         <motion.div
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-pure-black"
           exit={{ y: '-100%' }}
-          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
         >
           <div className="flex flex-col items-center gap-8">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
               className="text-center"
             >
               <h1 className="font-display text-3xl font-bold tracking-[0.3em] text-ivory md:text-5xl">
@@ -50,37 +55,26 @@ export function Preloader() {
                 className="absolute inset-0 origin-left bg-accent-blue"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 1.4, ease: [0.76, 0, 0.24, 1], delay: 0.4 }}
+                transition={{ duration: 1, ease: [0.76, 0, 0.24, 1], delay: 0.2 }}
               />
-              <motion.svg
-                className="absolute inset-0 h-full w-full"
-                viewBox="0 0 256 2"
-                preserveAspectRatio="none"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ duration: 1.4, delay: 0.4, times: [0, 0.5, 1] }}
-              >
-                <motion.path
-                  d="M0,1 Q16,-3 32,1 T64,1 T96,1 T128,1 T160,1 T192,1 T224,1 T256,1"
-                  fill="none"
-                  stroke="hsl(var(--accent-light))"
-                  strokeWidth="1"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1.4, ease: 'easeInOut', delay: 0.4 }}
-                />
-              </motion.svg>
             </div>
 
             <motion.p
               className="font-display text-sm italic text-soft-gray md:text-base"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
+              transition={{ duration: 0.4, delay: 0.6 }}
             >
               {site.tagline}
             </motion.p>
           </div>
+
+          <button
+            onClick={skip}
+            className="absolute bottom-8 right-8 font-mono text-[10px] uppercase tracking-[0.3em] text-soft-gray/50 transition-colors hover:text-ivory"
+          >
+            Skip
+          </button>
         </motion.div>
       )}
     </AnimatePresence>

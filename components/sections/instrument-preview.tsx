@@ -47,7 +47,7 @@ export function InstrumentPreview() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-charcoal px-6 py-24 md:py-32">
+    <section ref={sectionRef} className="bg-pure-black px-6 py-24 md:py-32">
       <div className="mx-auto max-w-7xl">
         <div className="section-header mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>

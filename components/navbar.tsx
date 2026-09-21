@@ -23,6 +23,17 @@ export function Navbar() {
     setMobileOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
   return (
     <>
       <header
@@ -60,7 +71,7 @@ export function Navbar() {
 
           <button
             onClick={() => setMobileOpen(true)}
-            className="text-ivory md:hidden"
+            className="p-2 text-ivory md:hidden"
             aria-label="Open menu"
           >
             <Menu className="h-6 w-6" />
@@ -75,27 +86,31 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
           >
             <div className="flex items-center justify-between px-6 py-5">
               <span className="font-display text-xl font-bold tracking-[0.2em] text-ivory">
                 {site.logo.text}
               </span>
-              <button onClick={() => setMobileOpen(false)} aria-label="Close menu">
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="p-2"
+                aria-label="Close menu"
+              >
                 <X className="h-6 w-6 text-ivory" />
               </button>
             </div>
-            <div className="flex flex-col gap-2 px-6 pt-12">
+            <div className="flex flex-col gap-0 px-6 pt-8">
               {site.nav.map((item, i) => (
                 <motion.div
                   key={item.href}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * i + 0.1 }}
+                  transition={{ delay: 0.04 * i + 0.05 }}
                 >
                   <Link
                     href={item.href}
-                    className={`block border-b border-graphite-light/20 py-4 font-display text-2xl ${
+                    className={`block border-b border-graphite-light/20 py-5 font-display text-2xl ${
                       pathname === item.href ? 'text-accent-blue-light' : 'text-ivory'
                     }`}
                   >

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { site } from '@/lib/site';
-import { Instagram, Music2 } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 const footerLinks = [
   { label: 'Academy', href: '/' },
@@ -22,7 +22,7 @@ const policyLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-graphite-light/30 bg-pure-black px-6 py-16">
+    <footer className="border-t border-graphite-light/30 bg-pure-black px-6 py-16 pb-24 md:pb-16">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
           {/* Brand */}
